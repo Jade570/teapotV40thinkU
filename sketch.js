@@ -1,4 +1,4 @@
-let teapot, teacup;
+let teapot, teacup, thinku;
 let rotx, roty, rotz;
 let slider;
 let brightness;
@@ -14,11 +14,13 @@ let anglenum;
 let ty1, ty2, ty3, ty4, ty5;
 let tx1, tx2, tx3, tx4, tx5;
 let tz1, tz2, tz3, tz4, tz5;
+let rz1;
 
 function preload() {
 
   teapot = loadModel('data/teapot.obj');
   teacup = loadModel('data/teacup.obj'); //https://sketchfab.com/3d-models/gilded-teacup-97e45768e0184ebdb84f8cf53eb4e97a
+  thinku = loadImage('data/thinku.jpg');
   soundFormats('mp3');
   sound = loadSound('data/song');
   font = loadFont('data/NotoSansKR-Black.otf');
@@ -40,12 +42,13 @@ function setup() {
   rz = 0;
   brightness = 0;
   scl = 10;
-  sound.setVolume(0.1);
+  sound.setVolume(0.5);
   scene = -1;
   cangle = TWO_PI / 5;
   cFrame = 0;
   circlex = 0;
   circley = 0;
+  rz1 = 0;
 
   tx = 0;
   ty = 200;
@@ -163,6 +166,37 @@ function draw() {
   if (sound.currentTime() >= 15 && sound.currentTime() <= 15.1 && scene == 23) {
     scene += 1;
   }
+  if (sound.currentTime() >= 15.7 && sound.currentTime() <= 15.8 && scene == 25) {
+    scene += 1;
+  }
+  if (sound.currentTime() >= 17.6 && sound.currentTime() <= 17.7 && scene == 26) {
+    scene += 1;
+  }
+  if (sound.currentTime() >= 18 && sound.currentTime() <= 18.1 && scene == 27) {
+    scene += 1;
+  }
+  if (sound.currentTime() >= 18.7 && sound.currentTime() <= 18.8 && scene == 28) {
+    scene += 1;
+  }
+  if (sound.currentTime() >= 20.2 && sound.currentTime() <= 20.3 && scene == 29) {
+    scene += 1;
+  }
+  if (sound.currentTime() >= 20.5 && sound.currentTime() <= 20.6 && scene == 30) {
+    scene += 1;
+  }
+  if (sound.currentTime() >= 20.9 && sound.currentTime() <= 21.9 && scene == 32) {
+    scene += 1;
+  }
+  if (sound.currentTime() >= 22.4 && sound.currentTime() <= 22.5 && scene == 33) {
+    scene += 1;
+  }
+  if (sound.currentTime() >= 27.6 && scene == 34) {
+    scene += 1;
+  }
+
+  if (sound.currentTime() >= 30 && scene == 35) {
+    scene += 1;
+  }
 
 
 
@@ -175,7 +209,7 @@ function draw() {
   rotateZ(rotz);
   rotateY(roty);
   rotateX(rotx);
-
+  imageMode(CENTER);
   scale(scl);
   noStroke();
 
@@ -190,6 +224,8 @@ function draw() {
       scl += 0.1;
       model(teapot);
       pop();
+
+
       break;
 
     case 1:
@@ -534,16 +570,16 @@ function draw() {
       //brightness -= 1;
 
 
-        tx1 -=2.2;
-        tx2 -=2.2;
-        tx3 -=2.2;
-        tx4 -=2.2;
-        tx5 -=2.2;
-        ty1 +=2.2;
-        ty2 +=2.2;
-        ty3 +=2.2;
-        ty4 +=2.2;
-        ty5 +=2.2;
+      tx1 -= 2.2;
+      tx2 -= 2.2;
+      tx3 -= 2.2;
+      tx4 -= 2.2;
+      tx5 -= 2.2;
+      ty1 += 2.2;
+      ty2 += 2.2;
+      ty3 += 2.2;
+      ty4 += 2.2;
+      ty5 += 2.2;
 
       push();
       translate(cos(0) * tx1, sin(0) * ty1, -20);
@@ -589,7 +625,7 @@ function draw() {
       tx4 = 45;
       tx5 = 45;
       scene += 1;
-            brightness = 1;
+      brightness = 1;
       break;
 
     case 21:
@@ -613,7 +649,7 @@ function draw() {
       tz1 = -30;
       tz2 = -30;
       tz3 = -30;
-      scene+=1;
+      scene += 1;
       rx = HALF_PI;
       break;
 
@@ -657,38 +693,364 @@ function draw() {
       model(teacup);
       pop();
 
-      if (sound.currentTime() >= 13.25 && sound.currentTime() < 14.5){
-          if(rx >= HALF_PI/16*3){
-                      rx -= HALF_PI / 16;
-          }
+      if (sound.currentTime() >= 13.25 && sound.currentTime() < 14.5) {
+        if (rx >= HALF_PI / 16 * 3) {
+          rx -= HALF_PI / 16;
+        }
 
       }
-      if (sound.currentTime() >= 14.5){
-          if(rx <= HALF_PI){
-                      rx += HALF_PI / 10;
-          }
+      if (sound.currentTime() >= 14.5) {
+        if (rx <= HALF_PI) {
+          rx += HALF_PI / 10;
+        }
 
       }
       break;
 
 
     case 24:
-    tz = 200;
+      tz = 200;
 
 
-    scene+=1;
+      scene += 1;
       break;
 
-      case 25:
+    case 25:
       fill(255);
       let writetext5 = "Oh";
       text(writetext5, 0, 0);
       if (tz >= -600 && sound.currentTime() >= 15.11) {
         tz -= 50;
       }
+
+      rz = PI;
       break;
 
 
+    case 26:
+      if (rz <= (TWO_PI + PI)) {
+        rz += HALF_PI / 40;
+
+      }
+      push();
+      rotateX(HALF_PI);
+      rotateZ(rz);
+      model(teapot);
+      pop();
+
+      break;
+
+    case 27:
+      rz = PI;
+      fill(255);
+      let writetext6 = "Soft";
+      text(writetext6, 0, 0);
+      if (tz <= 50 && sound.currentTime() <= 17.9) {
+        tz += 50;
+      }
+
+      rz = PI;
+      break;
+
+    case 28:
+      fill(255);
+      let writetext7 = "매끄러워";
+      text(writetext7, 0, 0);
+      if (tz >= -600 && sound.currentTime() >= 15.11) {
+        tz -= 50;
+      }
+      rz = PI;
+      break;
+
+    case 29:
+      if (sound.currentTime() < 19.5 && rz <= (TWO_PI + PI)) {
+        rz += HALF_PI / 40;
+      }
+      if (sound.currentTime() >= 19.5 && rz >= 0) {
+        rz -= HALF_PI / 40;
+      }
+      push();
+      translate(-13, 0, 0);
+      rotateX(HALF_PI);
+      rotateZ(rz);
+      model(teapot);
+      pop();
+
+
+      push();
+      translate(26, -3, 20);
+      rotateX(PI);
+      model(teacup);
+      pop();
+
+      if (sound.currentTime() >= 19.1) {
+        push();
+        translate(26, -5, 20);
+        rotateX(PI);
+        model(teacup);
+        pop();
+
+        push();
+        translate(26, -7, 20);
+        rotateX(PI);
+        model(teacup);
+        pop();
+
+        push();
+        translate(26, -9, 20);
+        rotateX(PI);
+        model(teacup);
+        pop();
+
+        push();
+        translate(26, -11, 20);
+        rotateX(PI);
+        model(teacup);
+        pop();
+      }
+
+      if (sound.currentTime() >= 19.85) {
+        background(0);
+        push();
+        translate(-13, 0, 0);
+        rotateX(HALF_PI);
+        rotateZ(rz);
+        model(teapot);
+        pop();
+
+
+        push();
+        translate(26, -3, 20);
+        rotateX(PI);
+        model(teacup);
+        pop();
+
+      }
+      break;
+
+    case 30:
+      rz = PI;
+      fill(255);
+      let writetext8 = "차 양 알고싶어";
+      text(writetext8, 0, 0);
+      break;
+
+    case 31:
+      tz = 100;
+      scene += 1;
+      break;
+
+    case 32:
+      fill(255);
+      let writetext9 = "Quantity";
+      text(writetext9, 0, 0);
+      if (tz >= -300 && sound.currentTime() <= 20.8) {
+        tz -= 50;
+      }
+      rz = PI;
+      break;
+
+    case 33:
+      rz += HALF_PI / 40;
+      tz -= 15;
+      push();
+      translate(0, -5, -20);
+      rotateZ(rz);
+      model(teapot);
+      pop();
+
+      if (sound.currentTime() >= 21.2) {
+        for (let x = -20; x <= 20; x += 40) {
+          for (let y = -20; y <= 20; y += 40) {
+            push();
+            translate(x, y, -120);
+            rotateZ(rz);
+            model(teapot);
+            pop();
+          }
+        }
+      }
+
+      if (sound.currentTime() >= 21.7) {
+        for (let x = -60; x <= 60; x += 40) {
+          for (let y = -60; y <= 60; y += 40) {
+            push();
+            translate(x, y, -120);
+            rotateZ(rz);
+            model(teapot);
+            pop();
+          }
+        }
+      }
+
+      if (sound.currentTime() >= 22.15) {
+        for (let x = -100; x <= 100; x += 40) {
+          for (let y = -100; y <= 100; y += 40) {
+            push();
+            translate(x, y, -120);
+            rotateZ(rz);
+            model(teapot);
+            pop();
+          }
+        }
+      }
+      tz1 = 0;
+      tx2 = 0;
+      ty2 = 50;
+      break;
+
+    case 34:
+
+      if (sound.currentTime() < 23.14) {
+        rz1 += HALF_PI / 150;
+      }
+
+      rz += HALF_PI / 40;
+      if (tz > -4600) {
+        tz -= 15;
+        tz1 += 0.61;
+      }
+
+      push();
+      translate(-10, -7, tz1 + 60);
+      rotateY(rz1);
+      rotateX(HALF_PI * 5 / 6);
+      model(teapot);
+      pop();
+
+      for (let x = -180; x <= 180; x += 40) {
+        for (let y = -180; y <= 180; y += 40) {
+          push();
+          translate(x, y, -120);
+          rotateZ(rz);
+          model(teapot);
+          pop();
+        }
+      }
+
+      if (sound.currentTime() >= 23.14 && sound.currentTime() < 23.88) {
+        background(0);
+
+        for (let x = -180; x <= 180; x += 40) {
+          for (let y = -180; y <= 180; y += 40) {
+            push();
+            translate(x, y, -120);
+            rotateZ(rz);
+            model(teapot);
+            pop();
+          }
+        }
+
+        rz1 -= HALF_PI / 150;
+        push();
+        translate(10, 5, tz1 + 60);
+        rotateY(rz1);
+        rotateX(HALF_PI * 1 / 3);
+        model(teapot);
+        pop();
+      }
+
+      if (sound.currentTime() >= 23.88 && sound.currentTime() < 24.6) {
+        background(0);
+
+        for (let x = -180; x <= 180; x += 40) {
+          for (let y = -180; y <= 180; y += 40) {
+            push();
+            translate(x, y, -120);
+            rotateZ(rz);
+            model(teapot);
+            pop();
+          }
+        }
+
+        rz1 += HALF_PI / 150;
+        push();
+        translate(-8, -4, tz1 + 60);
+        rotateY(rz1);
+        rotateX(PI * 5 / 6);
+        model(teapot);
+        pop();
+      }
+
+      if (sound.currentTime() >= 24.6 && sound.currentTime() < 25.35) {
+        background(0);
+        for (let x = -180; x <= 180; x += 40) {
+          for (let y = -180; y <= 180; y += 40) {
+            push();
+            translate(x, y, -120);
+            rotateZ(rz);
+            model(teapot);
+            pop();
+          }
+        }
+
+        rz1 -= HALF_PI / 150;
+        push();
+        translate(11, 0, tz1 + 60);
+        rotateY(rz1);
+        rotateX(PI * 9 / 5);
+        model(teapot);
+        pop();
+      }
+
+      if (sound.currentTime() >= 25.35) { //갈라짐
+        background(0);
+        tx2 += 0.5;
+
+        for (let x = -180; x <= 0; x += 40) {
+          for (let y = -180; y <= 180; y += 40) {
+            push();
+            translate(x - tx2, y, -120);
+            rotateZ(rz);
+            model(teapot);
+            pop();
+          }
+        }
+
+        for (let x = 180; x >= 0; x -= 40) {
+          for (let y = 180; y >= -180; y -= 40) {
+            push();
+            translate(x + tx2, y, -120);
+            rotateZ(rz);
+            model(teapot);
+            pop();
+          }
+        }
+
+
+        rz1 -= HALF_PI / 150;
+        if(ty2 >= 0){
+                  ty2 -= 0.2;
+        }
+        push();
+        translate(0, ty2, tz1);
+        //rotateY(rz1);
+        rotateX(HALF_PI);
+        model(teapot);
+        pop();
+      }
+
+      tz3 = -1;
+      break;
+
+    case 35:
+        tz=0;
+    background(0);
+
+    tz3 += 0.01;
+    pointLight(0,0,100,0,0,100);
+    directionalLight(0,0,100,0,0,100);
+    push();
+    translate(0,0,tz3);
+    console.log(tz3); //-118
+    image(thinku,0,-10,35*2/3,25*2/3);
+    pop();
+    rz += HALF_PI;
+    break;
+
+    case 36:
+    background(0);
+    break;
 
   }
 
