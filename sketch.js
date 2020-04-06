@@ -30,7 +30,7 @@ function setup() {
   frameRate(60);
   let cnv = createCanvas(windowWidth, windowHeight, WEBGL);
   colorMode(HSB, 360, 100, 100);
-  slider = createSlider(0, 360, 120);
+  slider = createSlider(0, 0.7, 0.35, 0.1);
   slider.position(10, 10);
   slider.style('width', '80px');
 
@@ -42,7 +42,7 @@ function setup() {
   rz = 0;
   brightness = 0;
   scl = 10;
-  sound.setVolume(0.5);
+
   scene = -1;
   cangle = TWO_PI / 5;
   cFrame = 0;
@@ -78,7 +78,7 @@ function setup() {
 
 function draw() {
   let angle = TWO_PI / 5;
-
+  sound.setVolume(slider.value());
   //scene change by sound
   if (sound.isPlaying() == false && scene == -1 && mouseIsPressed) {
     sound.play();
@@ -218,18 +218,15 @@ function draw() {
 
   //scene change
   switch (scene) {
-    case 0:
-      brightness += 5;
+    case 0: //teapot from darkness
+      brightness += 1;
       push();
       scl += 0.1;
       model(teapot);
       pop();
-
-
       break;
 
-    case 1:
-      background(0);
+    case 1: //5
       fill(50, 100, 100);
       push();
       rotateZ(HALF_PI / 2);
@@ -238,8 +235,7 @@ function draw() {
       tz1 = 0;
       break;
 
-    case 2:
-      background(0);
+    case 2: //chinese 5
       fill(100, 100, 100);
       push();
       rotateZ(HALF_PI);
@@ -251,11 +247,9 @@ function draw() {
       break;
 
     case 3:
-      background(0);
       fill(150, 100, 100);
       push();
       rotateZ(PI - 10);
-      //translate(0,200,-300);
       scl = 15;
       model(teapot);
       pop();
@@ -630,9 +624,9 @@ function draw() {
 
     case 21:
 
-      spotLight(200, 0, 100 - brightness, tx1 += 5, 0, 1000, 0, 0, -1, PI / 16);
+      spotLight(200, 0, 100 - brightness, tx1 += 5, 0, 1200, 0, 0, -1, PI / 8);
       push();
-      translate(0, 0, 30);
+      translate(0, -3, 25);
 
       model(teapot);
       pop();
@@ -733,6 +727,8 @@ function draw() {
 
       }
       push();
+      shininess(100);
+      translate(0,0,30);
       rotateX(HALF_PI);
       rotateZ(rz);
       model(teapot);
