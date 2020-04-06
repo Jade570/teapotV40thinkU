@@ -13,6 +13,7 @@ let circlex, circley;
 let anglenum;
 let ty1, ty2, ty3, ty4, ty5;
 let tx1, tx2, tx3, tx4, tx5;
+let tz1, tz2, tz3, tz4, tz5;
 
 function preload() {
 
@@ -59,6 +60,11 @@ function setup() {
   tx3 = 0;
   tx4 = 0;
   tx5 = 0;
+  tz1 = 0;
+  tz2 = 0;
+  tz3 = 0;
+  tz4 = 0;
+  tz5 = 0;
   anglenum = 0;
 
   textFont(font);
@@ -134,6 +140,28 @@ function draw() {
     scene += 1;
   }
 
+  if (sound.currentTime() >= 8.68 && sound.currentTime() <= 8.78 && scene == 15) {
+    scene += 1;
+  }
+
+  if (sound.currentTime() >= 9.45 && sound.currentTime() <= 9.55 && scene == 17) {
+    rz = 0;
+    scene += 1;
+  }
+
+  if (sound.currentTime() >= 10.55 && sound.currentTime() <= 10.65 && scene == 18) {
+    scene += 1;
+  }
+
+  if (sound.currentTime() >= 11.65 && sound.currentTime() <= 11.75 && scene == 19) {
+    scene += 1;
+  }
+
+  if (sound.currentTime() >= 13.1 && sound.currentTime() <= 13.2 && scene == 21) {
+    scene += 1;
+  }
+
+
   background(0);
   // setting lights
   pointLight(0, 0, brightness, 0, 0, 1000);
@@ -156,9 +184,7 @@ function draw() {
       brightness += 5;
       push();
       scl += 0.1;
-      //translate(0,200,-300);
       model(teapot);
-      //model(teacup);
       pop();
       break;
 
@@ -167,19 +193,19 @@ function draw() {
       fill(50, 100, 100);
       push();
       rotateZ(HALF_PI / 2);
-      //translate(0,200,-300);
       model(teapot);
       pop();
+      tz1 = 0;
       break;
 
     case 2:
       background(0);
       fill(100, 100, 100);
       push();
-      rotateZ(HALF_PI / 3 * 2);
+      rotateZ(HALF_PI);
       rotateX(PI);
-      //  translate(0,200,-300);
-      scl += 0.3;
+      translate(tz1, 0, -20);
+      tz1 += 0.3;
       model(teapot);
       pop();
       break;
@@ -408,6 +434,194 @@ function draw() {
       rotateZ(-(TWO_PI / 5 * 4));
       model(teapot);
       pop();
+
+      tz1 = -50;
+      tz2 = -70;
+      tz3 = -70;
+      tz4 = -90;
+      tz5 = -90;
+      break;
+
+    case 15:
+      ty1 = -45;
+      ty2 = -45;
+      ty3 = -45;
+      ty4 = -45;
+      ty5 = -45;
+      tx1 = 45;
+      tx2 = 45;
+      tx3 = 45;
+      tx4 = 45;
+      tx5 = 45;
+
+      tz += 0.1;
+
+      push();
+      translate(0, 0, tz1 -= 0.8);
+      rotateX(HALF_PI);
+      rotateZ(HALF_PI);
+      model(teapot);
+      pop();
+
+      push();
+      translate(25, 0, tz2);
+      rotateX(HALF_PI);
+      rotateZ(HALF_PI / 2);
+      model(teapot);
+      pop();
+
+      push();
+      translate(-25, 0, tz3);
+      rotateX(HALF_PI);
+      rotateZ(PI - (HALF_PI / 2));
+      model(teapot);
+      pop();
+
+      push();
+      translate(55, 0, tz4 += 0.4);
+      rotateX(HALF_PI);
+      rotateZ(0);
+      model(teapot);
+      pop();
+
+      push();
+      translate(-55, 0, tz5 += 0.4);
+      rotateX(HALF_PI);
+      rotateZ(PI);
+      model(teapot);
+      pop();
+
+      break;
+
+    case 16:
+      scene += 1;
+      tx1 = -100;
+      break;
+
+    case 17:
+      push();
+      spotLight(200, 0, 100, tx1 += 10, 0, 300, 0, 0, -1, PI / 16);
+      rotateX(HALF_PI);
+      shininess(100);
+      model(teapot);
+      pop();
+      break;
+
+    case 18:
+      push();
+      rotateZ(rz);
+      rotateX(rx);
+      model(teapot);
+      pop();
+      if (sound.currentTime() >= 9.7) {
+        if (rz < TWO_PI) {
+          rz += HALF_PI / 6;
+        } else {
+          rx = HALF_PI;
+        }
+      }
+      tx1 = 45;
+      brightness = 100;
+      break;
+
+    case 19:
+      rz = 0;
+      rx = 0;
+      //brightness -= 1;
+
+
+        tx1 -=2.2;
+        tx2 -=2.2;
+        tx3 -=2.2;
+        tx4 -=2.2;
+        tx5 -=2.2;
+        ty1 +=2.2;
+        ty2 +=2.2;
+        ty3 +=2.2;
+        ty4 +=2.2;
+        ty5 +=2.2;
+
+      push();
+      translate(cos(0) * tx1, sin(0) * ty1, -20);
+      rotateZ(0);
+      model(teapot);
+      pop();
+
+      push();
+      translate(cos(TWO_PI / 5) * tx2, sin(TWO_PI / 5) * ty2, -20);
+      rotateZ(-(TWO_PI / 5));
+      model(teapot);
+      pop();
+
+      push();
+      translate(cos(TWO_PI / 5 * 2) * tx3, sin(TWO_PI / 5 * 2) * ty3, -20);
+      rotateZ(-(TWO_PI / 5 * 2));
+      model(teapot);
+      pop();
+
+      push();
+      translate(cos(TWO_PI / 5 * 3) * tx4, sin(TWO_PI / 5 * 3) * ty4, -20);
+      rotateZ(-(TWO_PI / 5 * 3));
+      model(teapot);
+      pop();
+
+      push();
+      translate(cos(TWO_PI / 5 * 4) * tx5, sin(TWO_PI / 5 * 4) * ty5, -20);
+      rotateZ(-(TWO_PI / 5 * 4));
+      model(teapot);
+      pop();
+
+      break;
+
+    case 20:
+      tx1 = -80;
+      ty1 = -45;
+      ty2 = -45;
+      ty3 = -45;
+      ty4 = -45;
+      ty5 = -45;
+      tx2 = 45;
+      tx3 = 45;
+      tx4 = 45;
+      tx5 = 45;
+      scene += 1;
+            brightness = 1;
+      break;
+
+    case 21:
+
+      spotLight(200, 0, 100 - brightness, tx1 += 5, 0, 1000, 0, 0, -1, PI / 16);
+      push();
+      translate(0, 0, 30);
+
+      model(teapot);
+      pop();
+      break;
+
+    case 22:
+      brightness = 100;
+      push();
+      translate(0, -20, -30);
+      rotateX(HALF_PI);
+      rotateZ(HALF_PI);
+      model(teapot);
+      pop();
+
+      push();
+      translate(-30, -20, -30);
+      rotateX(HALF_PI);
+      rotateZ(HALF_PI);
+      model(teapot);
+      pop();
+
+      push();
+      translate(30, -20, -30);
+      rotateX(HALF_PI);
+      rotateZ(HALF_PI);
+      model(teapot);
+      pop();
+
+
       break;
 
   }
