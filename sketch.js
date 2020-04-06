@@ -11,6 +11,8 @@ let tx, ty, tz;
 let rx, ry, rz;
 let circlex, circley;
 let anglenum;
+let ty1, ty2, ty3, ty4, ty5;
+let tx1, tx2, tx3, tx4, tx5;
 
 function preload() {
 
@@ -47,6 +49,16 @@ function setup() {
   tx = 0;
   ty = 200;
   tz = -300;
+  ty1 = 0;
+  ty2 = 0;
+  ty3 = 0;
+  ty4 = 0;
+  ty5 = 0;
+  tx1 = 0;
+  tx2 = 0;
+  tx3 = 0;
+  tx4 = 0;
+  tx5 = 0;
   anglenum = 0;
 
   textFont(font);
@@ -115,6 +127,10 @@ function draw() {
   }
 
   if (sound.currentTime() >= 6.86 && sound.currentTime() <= 6.96 && scene == 13) {
+    scene += 1;
+  }
+
+  if (sound.currentTime() >= 7.6 && sound.currentTime() <= 7.7 && scene == 14) {
     scene += 1;
   }
 
@@ -352,13 +368,45 @@ function draw() {
       translate(-20, -20, -20);
       rotateZ(rz);
       rotateX(HALF_PI);
-      model(teapot);
+      model(teapot); // 물 떨어지면서 색 하얗게
       pop();
 
       push();
       translate(23.5, -7, 10);
       rotateX(PI);
       model(teacup);
+      pop();
+      break;
+
+    case 14:
+      push();
+      translate(cos(0) * tx1++, sin(0) * ty1--, -20);
+      rotateZ(0);
+      model(teapot);
+      pop();
+
+      push();
+      translate(cos(TWO_PI / 5) * tx2++, sin(TWO_PI / 5) * ty2--, -20);
+      rotateZ(-(TWO_PI / 5));
+      model(teapot);
+      pop();
+
+      push();
+      translate(cos(TWO_PI / 5 * 2) * tx3++, sin(TWO_PI / 5 * 2) * ty3--, -20);
+      rotateZ(-(TWO_PI / 5 * 2));
+      model(teapot);
+      pop();
+
+      push();
+      translate(cos(TWO_PI / 5 * 3) * tx4++, sin(TWO_PI / 5 * 3) * ty4--, -20);
+      rotateZ(-(TWO_PI / 5 * 3));
+      model(teapot);
+      pop();
+
+      push();
+      translate(cos(TWO_PI / 5 * 4) * tx5++, sin(TWO_PI / 5 * 4) * ty5--, -20);
+      rotateZ(-(TWO_PI / 5 * 4));
+      model(teapot);
       pop();
       break;
 
