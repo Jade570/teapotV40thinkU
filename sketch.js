@@ -84,82 +84,63 @@ function draw() {
     sound.play();
     scene = 0;
   }
-
   if (sound.currentTime() >= 1.675 && sound.currentTime() <= 1.775 && scene == 0) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 2.035 && sound.currentTime() <= 2.135 && scene == 1) {
     scl = 15;
     scene += 1;
   }
-
   if (sound.currentTime() >= 2.4 && sound.currentTime() <= 2.5 && scene == 2) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 2.79 && sound.currentTime() <= 2.89 && scene == 3) {
     scl = 30;
     scene += 1;
   }
-
   if (sound.currentTime() >= 3.14 && sound.currentTime() <= 3.24 && scene == 4) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 3.82 && sound.currentTime() <= 3.92 && scene == 5) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 4.25 && sound.currentTime() <= 4.35 && scene == 6) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 4.6 && sound.currentTime() <= 4.7 && scene == 8) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 5 && sound.currentTime() <= 5.1 && scene == 9) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 5.4 && sound.currentTime() <= 5.5 && scene == 10) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 5.8 && sound.currentTime() <= 5.9 && scene == 11) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 6.2 && sound.currentTime() <= 6.3 && scene == 12) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 6.86 && sound.currentTime() <= 6.96 && scene == 13) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 7.6 && sound.currentTime() <= 7.7 && scene == 14) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 8.68 && sound.currentTime() <= 8.78 && scene == 15) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 9.45 && sound.currentTime() <= 9.55 && scene == 17) {
     rz = 0;
     scene += 1;
   }
-
   if (sound.currentTime() >= 10.55 && sound.currentTime() <= 10.65 && scene == 18) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 11.65 && sound.currentTime() <= 11.75 && scene == 19) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 13.1 && sound.currentTime() <= 13.2 && scene == 21) {
     scene += 1;
   }
@@ -193,7 +174,6 @@ function draw() {
   if (sound.currentTime() >= 27.6 && scene == 34) {
     scene += 1;
   }
-
   if (sound.currentTime() >= 30 && scene == 35) {
     scene += 1;
   }
@@ -220,6 +200,7 @@ function draw() {
   switch (scene) {
     case 0: //teapot from darkness
       brightness += 1;
+      fill(0, 100, 100);
       push();
       scl += 0.1;
       model(teapot);
@@ -227,7 +208,7 @@ function draw() {
       break;
 
     case 1: //5
-      fill(50, 100, 100);
+      fill(72, 100, 100);
       push();
       rotateZ(HALF_PI / 2);
       model(teapot);
@@ -236,7 +217,7 @@ function draw() {
       break;
 
     case 2: //chinese 5
-      fill(100, 100, 100);
+      fill(144, 100, 100);
       push();
       rotateZ(HALF_PI);
       rotateX(PI);
@@ -246,8 +227,8 @@ function draw() {
       pop();
       break;
 
-    case 3:
-      fill(150, 100, 100);
+    case 3: //다섯
+      fill(216, 100, 100);
       push();
       rotateZ(PI - 10);
       scl = 15;
@@ -255,28 +236,25 @@ function draw() {
       pop();
       break;
 
-    case 4:
-      background(0);
-      fill(200, 100, 100);
+    case 4: //five
+      fill(288, 100, 100);
       scl -= 0.3;
       model(teapot);
       break;
 
-    case 5:
-      background(0);
-
+    case 5: //pentagon + star
+      //basic canvas rotation: for proper image&text
       rotx = -HALF_PI;
       roty = 0;
       rotz = 0;
-
       push();
-      rotateX(PI);
+      rotateX(PI);  //rotation for proper star transform
       rotateZ(HALF_PI);
-      star(0, 0, 0, 4, 10, 5);
+      star(0, 0, 0, 4, 10, 5); //star
       stroke(50);
       strokeWeight(10);
 
-      cFrame += 1;
+      cFrame += 1; //pentagon line
       if (cFrame <= 5) {
         dline(0, 0, 0, 10, angle);
       } else {
@@ -291,10 +269,8 @@ function draw() {
       pop();
       break;
 
-    case 6:
-      background(0);
-
-      stroke(50);
+    case 6: //pentagon + "penta" text
+      stroke(50); //pentagon
       strokeWeight(10);
       push();
       rotateX(PI);
@@ -302,20 +278,18 @@ function draw() {
       dline(0, 0, 0, 10, angle);
       pop();
 
-      fill(255);
+      fill(255);  //text
       let writetext0 = "five\nservings";
       text(writetext0, 0, 4);
       break;
 
-    case 7:
+    case 7: //scene changer to 8
       tz = 500;
       scene += 1;
       break;
 
-    case 8:
-      background(0);
-
-      fill(255);
+    case 8: //더
+      fill(255); //text
       let writetext1 = "더";
       textSize(width / 100);
       text(writetext1, 0, -1);
@@ -325,9 +299,7 @@ function draw() {
       }
       break;
 
-    case 9:
-      background(0);
-
+    case 9: //more (better)
       fill(255);
       let writetext2 = "More";
       textSize(width / 100);
@@ -337,39 +309,29 @@ function draw() {
       }
       break;
 
-    case 10:
-      background(0);
-
+    case 10: //no (finger)
       fill(23, 48, 85);
       let writetext3 = "NO";
       textSize(width / 100);
-      text(writetext3, -7, -1);
-      if (sound.currentTime() >= 5.2) {
-        text(writetext3, 7, -1);
-      }
+      text(writetext3, 0, -1);
       break;
 
-    case 11:
-      background(0);
-
+    case 11: //better (더)
       fill(255);
       let writetext4 = "Better";
       textSize(width / 100);
       text(writetext4, 0, -1);
 
-      if (sound.currentTime() >= 5.75) {
+      if (sound.currentTime() >= 5.75) { //sudden black
         background(0);
         tz = -450;
       }
       break;
 
-    case 12:
-      background(0);
-
+    case 12: //5hands (5teapots)
       push();
       rotateX(HALF_PI);
       rotateZ(PI);
-      //translate(0, 200, -300);
       model(teapot);
       pop();
 
@@ -409,14 +371,15 @@ function draw() {
       roty = 0;
       break;
 
-    case 13: //pouring water
+    case 13: //pouring water (coin)
       ty = 200;
       background(0);
       rotateY(roty);
       push();
-      if (rz <= HALF_PI / 2) {
+      if (rz <= HALF_PI / 2) { //tilting teapot
         rz += 0.045;
-      } else {
+      }
+      else { //water drop falling
         push();
         translate(0.2, -18.1, -35);
         fill(200, 48, 85, 200);
@@ -438,7 +401,7 @@ function draw() {
       pop();
       break;
 
-    case 14:
+    case 14: //kaleidoscope (chess)
       push();
       translate(cos(0) * tx1++, sin(0) * ty1--, -20);
       rotateZ(0);
@@ -469,6 +432,7 @@ function draw() {
       model(teapot);
       pop();
 
+      //reset variables
       tz1 = -50;
       tz2 = -70;
       tz3 = -70;
@@ -476,7 +440,7 @@ function draw() {
       tz5 = -90;
       break;
 
-    case 15:
+    case 15: //chess (glasses)
       ty1 = -45;
       ty2 = -45;
       ty3 = -45;
@@ -488,10 +452,10 @@ function draw() {
       tx4 = 45;
       tx5 = 45;
 
-      tz += 0.1;
+      tz += 3;
 
       push();
-      translate(0, 0, tz1 -= 0.8);
+      translate(0, 0, tz1 -= 0.3);
       rotateX(HALF_PI);
       rotateZ(HALF_PI);
       model(teapot);
@@ -512,14 +476,14 @@ function draw() {
       pop();
 
       push();
-      translate(55, 0, tz4 += 0.4);
+      translate(55, 0, tz4 += 0.2);
       rotateX(HALF_PI);
       rotateZ(0);
       model(teapot);
       pop();
 
       push();
-      translate(-55, 0, tz5 += 0.4);
+      translate(-55, 0, tz5 += 0.2);
       rotateX(HALF_PI);
       rotateZ(PI);
       model(teapot);
@@ -527,12 +491,12 @@ function draw() {
 
       break;
 
-    case 16:
+    case 16: //scene change to 17
       scene += 1;
       tx1 = -100;
       break;
 
-    case 17:
+    case 17: //spotlight
       push();
       spotLight(200, 0, 100, tx1 += 10, 0, 300, 0, 0, -1, PI / 16);
       rotateX(HALF_PI);
@@ -541,16 +505,16 @@ function draw() {
       pop();
       break;
 
-    case 18:
+    case 18: //dynamic movement: rotate & look upward
       push();
       rotateZ(rz);
       rotateX(rx);
       model(teapot);
       pop();
       if (sound.currentTime() >= 9.7) {
-        if (rz < TWO_PI) {
+        if (rz < TWO_PI) {  //fast rotation
           rz += HALF_PI / 6;
-        } else {
+        } else {  //teapot look up
           rx = HALF_PI;
         }
       }
@@ -558,12 +522,9 @@ function draw() {
       brightness = 100;
       break;
 
-    case 19:
+    case 19: //kaleidoscope
       rz = 0;
       rx = 0;
-      //brightness -= 1;
-
-
       tx1 -= 2.2;
       tx2 -= 2.2;
       tx3 -= 2.2;
@@ -607,7 +568,7 @@ function draw() {
 
       break;
 
-    case 20:
+    case 20: //scene change to 21
       tx1 = -80;
       ty1 = -45;
       ty2 = -45;
@@ -622,17 +583,15 @@ function draw() {
       brightness = 1;
       break;
 
-    case 21:
-
+    case 21: //dim spotlight
       spotLight(200, 0, 100 - brightness, tx1 += 5, 0, 1200, 0, 0, -1, PI / 8);
       push();
       translate(0, -3, 25);
-
       model(teapot);
       pop();
       break;
 
-    case 22:
+    case 22: //scene change to 23
       brightness = 100;
       tx1 = 0;
       tx2 = 30;
@@ -647,7 +606,7 @@ function draw() {
       rx = HALF_PI;
       break;
 
-    case 23:
+    case 23: //3 teapot pouring ( 3 color balloon)
       push();
       translate(tx1, ty1, tz1);
       rotateX(rx);
@@ -702,29 +661,24 @@ function draw() {
       break;
 
 
-    case 24:
+    case 24: //scene change to 25
       tz = 200;
-
-
       scene += 1;
       break;
 
-    case 25:
+    case 25: //Oh
       fill(255);
       let writetext5 = "Oh";
       text(writetext5, 0, 0);
       if (tz >= -600 && sound.currentTime() >= 15.11) {
         tz -= 50;
       }
-
       rz = PI;
       break;
 
-
-    case 26:
+    case 26: //rotation
       if (rz <= (TWO_PI + PI)) {
         rz += HALF_PI / 40;
-
       }
       push();
       shininess(100);
@@ -736,7 +690,7 @@ function draw() {
 
       break;
 
-    case 27:
+    case 27: //soft
       rz = PI;
       fill(255);
       let writetext6 = "Soft";
@@ -748,7 +702,7 @@ function draw() {
       rz = PI;
       break;
 
-    case 28:
+    case 28: //매끄러워 (부드러워)
       fill(255);
       let writetext7 = "매끄러워";
       text(writetext7, 0, 0);
@@ -758,14 +712,14 @@ function draw() {
       rz = PI;
       break;
 
-    case 29:
+    case 29: //teapot color difference by amount of tea inside
       if (sound.currentTime() < 19.5 && rz <= (TWO_PI + PI)) {
         rz += HALF_PI / 40;
       }
-      if (sound.currentTime() >= 19.5 && rz >= 0) {
+      if (sound.currentTime() >= 19.5 && rz >= 0) { //2nd teapot: saturation down
         rz -= HALF_PI / 40;
       }
-      push();
+      push(); //1st teapot: saturation up
       translate(-13, 0, 0);
       rotateX(HALF_PI);
       rotateZ(rz);
@@ -773,13 +727,13 @@ function draw() {
       pop();
 
 
-      push();
+      push();   //1 cup of tea
       translate(26, -3, 20);
       rotateX(PI);
       model(teacup);
       pop();
 
-      if (sound.currentTime() >= 19.1) {
+      if (sound.currentTime() >= 19.1) { //5cups of tea
         push();
         translate(26, -5, 20);
         rotateX(PI);
@@ -815,7 +769,7 @@ function draw() {
         pop();
 
 
-        push();
+        push(); //1 cup of tea
         translate(26, -3, 20);
         rotateX(PI);
         model(teacup);
@@ -824,19 +778,19 @@ function draw() {
       }
       break;
 
-    case 30:
+    case 30: //차 양 알고싶어 (만지고 싶어)
       rz = PI;
       fill(255);
       let writetext8 = "차 양 알고싶어";
       text(writetext8, 0, 0);
       break;
 
-    case 31:
+    case 31: //scene change to 32
       tz = 100;
       scene += 1;
       break;
 
-    case 32:
+    case 32: //Quantity (touch)
       fill(255);
       let writetext9 = "Quantity";
       text(writetext9, 0, 0);
@@ -846,7 +800,7 @@ function draw() {
       rz = PI;
       break;
 
-    case 33:
+    case 33: //small teapots growing with big rotating teapot
       rz += HALF_PI / 40;
       tz -= 15;
       push();
@@ -895,7 +849,7 @@ function draw() {
       ty2 = 50;
       break;
 
-    case 34:
+    case 34: //4 zoom in teapots
 
       if (sound.currentTime() < 23.14) {
         rz1 += HALF_PI / 150;
@@ -1029,7 +983,7 @@ function draw() {
       tz3 = -1;
       break;
 
-    case 35:
+    case 35: //thinkU (thinQ)
         tz=0;
     background(0);
 
@@ -1044,17 +998,11 @@ function draw() {
     rz += HALF_PI;
     break;
 
-    case 36:
+    case 36: //end
     background(0);
     break;
-
   }
-
-
-
 }
-
-
 
 //draw a star
 function star(x, y, z, radius1, radius2, npoints) {
@@ -1080,6 +1028,7 @@ function star(x, y, z, radius1, radius2, npoints) {
   endShape(CLOSE);
 }
 
+//draw edge
 function dline(x, y, z, radius, angle) {
   for (let a = angle; a <= cangle; a += angle) {
     beginShape();
