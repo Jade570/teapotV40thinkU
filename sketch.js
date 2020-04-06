@@ -8,6 +8,8 @@ let scl;
 let cangle;
 let cFrame;
 let tx, ty, tz;
+let rx, ry, rz;
+let circlex, circley;
 let anglenum;
 
 function preload() {
@@ -30,12 +32,17 @@ function setup() {
   rotz = 0;
   rotx = 0;
   roty = 0;
+  rx = 0;
+  ry = 0;
+  rz = 0;
   brightness = 0;
   scl = 10;
   sound.setVolume(0.1);
   scene = -1;
   cangle = TWO_PI / 5;
   cFrame = 0;
+  circlex = 0;
+  circley = 0;
 
   tx = 0;
   ty = 200;
@@ -43,8 +50,8 @@ function setup() {
   anglenum = 0;
 
   textFont(font);
-  textSize(width/230);
-  textAlign(CENTER, CENTER);
+  textSize(width / 230);
+  textAlign(CENTER, BOTTOM);
 
 }
 
@@ -87,7 +94,7 @@ function draw() {
     scene += 1;
   }
 
-  if (sound.currentTime() >= 4.6 && sound.currentTime() <=4.7 && scene == 8) {
+  if (sound.currentTime() >= 4.6 && sound.currentTime() <= 4.7 && scene == 8) {
     scene += 1;
   }
 
@@ -107,52 +114,69 @@ function draw() {
     scene += 1;
   }
 
-
+  if (sound.currentTime() >= 6.86 && sound.currentTime() <= 6.96 && scene == 13) {
+    scene += 1;
+  }
 
   background(0);
   // setting lights
-  pointLight(0, 0, brightness, 0, 0, 500);
+  pointLight(0, 0, brightness, 0, 0, 1000);
   // transform the teapot
   translate(tx, ty, tz);
   rotateX(HALF_PI);
   rotateZ(rotz);
+  rotateY(roty);
+  rotateX(rotx);
+
   scale(scl);
   noStroke();
+
   // set teapot material colors
   fill(0, 100, 100);
-  // display teapots
-  // rotate teapots
-
-  //rot += 0.02;
 
   //scene change
   switch (scene) {
     case 0:
       brightness += 5;
+      push();
       scl += 0.1;
+      //translate(0,200,-300);
       model(teapot);
+      //model(teacup);
+      pop();
       break;
 
     case 1:
       background(0);
       fill(50, 100, 100);
-      rotz = 10;
+      push();
+      rotateZ(HALF_PI / 2);
+      //translate(0,200,-300);
       model(teapot);
+      pop();
       break;
 
     case 2:
       background(0);
       fill(100, 100, 100);
+      push();
+      rotateZ(HALF_PI / 3 * 2);
+      rotateX(PI);
+      //  translate(0,200,-300);
       scl += 0.3;
       model(teapot);
+      pop();
       break;
 
     case 3:
       background(0);
       fill(150, 100, 100);
-      rotz = PI - 10;
+      push();
+      rotateZ(PI - 10);
+      //translate(0,200,-300);
       scl = 15;
       model(teapot);
+      pop();
       break;
 
     case 4:
@@ -164,160 +188,179 @@ function draw() {
 
     case 5:
       background(0);
-      rotateX(HALF_PI);
-      rotateY(HALF_PI/5*2);
-      rotateZ(angle/11*3);
+
+      rotx = -HALF_PI;
+      roty = 0;
+      rotz = 0;
+
+      push();
+      rotateX(PI);
+      rotateZ(HALF_PI);
       star(0, 0, 0, 4, 10, 5);
-
-
       stroke(50);
       strokeWeight(10);
 
       cFrame += 1;
-      if ( cFrame <= 5 ){
-          dline(0,0,0,10,angle);
-      }
-      else{
-          cFrame = 0;
-          cangle+=angle;
-          anglenum +=1 ;
+      if (cFrame <= 5) {
+        dline(0, 0, 0, 10, angle);
+      } else {
+        cFrame = 0;
+        cangle += angle;
+        anglenum += 1;
       }
 
-      if(anglenum < 6){
+      if (anglenum < 6) {
         tz -= 10;
+      }
+      pop();
+      break;
+
+    case 6:
+      background(0);
+
+      stroke(50);
+      strokeWeight(10);
+      push();
+      rotateX(PI);
+      rotateZ(HALF_PI);
+      dline(0, 0, 0, 10, angle);
+      pop();
+
+      fill(255);
+      let writetext0 = "five\nservings";
+      text(writetext0, 0, 4);
+      break;
+
+    case 7:
+      tz = 500;
+      scene += 1;
+      break;
+
+    case 8:
+      background(0);
+
+      fill(255);
+      let writetext1 = "더";
+      textSize(width / 100);
+      text(writetext1, 0, -1);
+
+      if (tz >= -200) {
+        tz -= 80;
       }
       break;
 
-      case 6:
+    case 9:
+      background(0);
+
+      fill(255);
+      let writetext2 = "More";
+      textSize(width / 100);
+      text(writetext2, 0, -1);
+      if (tz <= 0) {
+        tz += 3;
+      }
+      break;
+
+    case 10:
+      background(0);
+
+      fill(23, 48, 85);
+      let writetext3 = "NO";
+      textSize(width / 100);
+      text(writetext3, -7, -1);
+      if (sound.currentTime() >= 5.2) {
+        text(writetext3, 7, -1);
+      }
+      break;
+
+    case 11:
+      background(0);
+
+      fill(255);
+      let writetext4 = "Better";
+      textSize(width / 100);
+      text(writetext4, 0, -1);
+
+      if (sound.currentTime() >= 5.75) {
         background(0);
+        tz = -450;
+      }
+      break;
+
+    case 12:
+      background(0);
+
+      push();
+      rotateX(HALF_PI);
+      rotateZ(PI);
+      //translate(0, 200, -300);
+      model(teapot);
+      pop();
+
+      if (tz >= -500) {
+        tz -= 10;
+      }
+
+      if (sound.currentTime() >= 5.85) {
+        push();
         rotateX(HALF_PI);
-        rotateY(HALF_PI/5*2);
-        rotateZ(angle/11*3);
-        stroke(50);
-        strokeWeight(10);
-        dline(0,0,0,10,angle);
-
-        rotateX(0);
-        rotateY(PI);
-        rotateZ(PI*10/9);
-        fill(255);
-        let writetext0 = "five\nservings";
-        text(writetext0, 0,-1);
-        break;
-
-      case 7:
-        tz = 500;
-        scene += 1;
-        break;
-
-      case 8 :
-        background(0);
-        rotateX(HALF_PI);
-        rotateY(PI+0.8);
         rotateZ(PI);
-        fill(255);
-        let writetext1 = "더";
-        textSize(width/100);
-        text(writetext1, 0,-1);
+        translate(-30, 0, -15);
+        model(teapot);
+        pop();
 
-
-        if( tz >= -200){
-          tz -= 80;
-        }
-        break;
-
-      case 9 :
-        background(0);
+        push();
         rotateX(HALF_PI);
-        rotateY(PI+0.6);
         rotateZ(PI);
-        fill(255);
-        let writetext2 = "More";
-        textSize(width/100);
-        text(writetext2, 0,-1);
-        if( tz <= 0){
-          tz += 3;
-        }
-        break;
+        translate(30, 0, -15);
+        model(teapot);
+        pop();
 
-      case 10 :
-        background(0);
-        //tz = -300;
+        push();
         rotateX(HALF_PI);
-        rotateY(PI+0.6);
         rotateZ(PI);
-        fill(255);
-        let writetext3 = "NO";
-        textSize(width/100);
-        text(writetext3, -7,-1);
-        if (sound.currentTime() >= 5.2){
-          text(writetext3, 7, -1);
+        translate(-20, 0, 15);
+        model(teapot);
+        pop();
+
+        push();
+        rotateX(HALF_PI);
+        rotateZ(PI);
+        translate(20, 0, 15);
+        model(teapot);
+        pop();
+      }
+      roty = 0;
+      break;
+
+    case 13: //pouring water
+      ty = 200;
+      background(0);
+      rotateY(roty);
+      push();
+      if (rz <= HALF_PI / 2) {
+        rz += 0.045;
+      } else {
+        push();
+        translate(0.2, -18.1, -35);
+        fill(200, 48, 85, 200);
+        if (circley <= 10) {
+          circle(circlex += 0.04, circley += 2, 1);
         }
-        break;
+        pop();
+      }
+      translate(-20, -20, -20);
+      rotateZ(rz);
+      rotateX(HALF_PI);
+      model(teapot);
+      pop();
 
-        case 11 :
-          background(0);
-          rotateX(HALF_PI);
-          rotateY(PI+0.6);
-          rotateZ(PI);
-          fill(255);
-          let writetext4 = "Better";
-          textSize(width/100);
-          text(writetext4, 0,-1);
-
-          if (sound.currentTime() >= 5.8){
-            background(0);
-          }
-          break;
-
-        case 12 :
-
-          background(0);
-          rotateZ(HALF_PI/5*2);
-          push();
-          translate(0, 0, -15);
-          model(teapot);
-          pop();
-
-          if( tz >= -310){
-            tz -= 10;
-          }
-          if (sound.currentTime() >= 5.9){
-            push();
-            translate(-30, 0, -15);
-            model(teapot);
-            pop();
-
-            push();
-            translate(30, 0, -15);
-            model(teapot);
-            pop();
-
-            push();
-            translate(-20, 0, 15);
-            model(teapot);
-            pop();
-
-            push();
-            translate(20, 0, 15);
-            model(teapot);
-            pop();
-          }
-          roty = 0;
-          break;
-
-        case 13: //pouring water, need debug
-          background(0);
-          rotateY(roty);
-          if(roty <= HALF_PI/2){
-            roty -= 1;
-          }
-
-          translate(-20, -20, 15);
-          model(teapot);
-
-
-          break;
+      push();
+      translate(23.5, -7, 10);
+      rotateX(PI);
+      model(teacup);
+      pop();
+      break;
 
   }
 
@@ -346,22 +389,22 @@ function star(x, y, z, radius1, radius2, npoints) {
     sz = z;
     vertex(sx, sy, sz);
   }
-    endShape(CLOSE);
+  endShape(CLOSE);
 }
 
 function dline(x, y, z, radius, angle) {
-  for(let a = angle; a<=cangle; a+=angle){
+  for (let a = angle; a <= cangle; a += angle) {
     beginShape();
-  //starting point
-      let sx = x + cos(a) * radius;
-      let sy = y + sin(a) * radius;
-      let sz = z;
-  //drawing point
-      let cx = x + cos(a+angle) * radius;
-      let cy = y + sin(a+angle) * radius;
-      let cz = z;
-      vertex(sx, sy, sz);
-      vertex(cx, cy, cz);
-      endShape(CLOSE);
-    }
+    //starting point
+    let sx = x + cos(a) * radius;
+    let sy = y + sin(a) * radius;
+    let sz = z;
+    //drawing point
+    let cx = x + cos(a + angle) * radius;
+    let cy = y + sin(a + angle) * radius;
+    let cz = z;
+    vertex(sx, sy, sz);
+    vertex(cx, cy, cz);
+    endShape(CLOSE);
+  }
 }
