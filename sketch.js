@@ -15,6 +15,7 @@ let ty1, ty2, ty3, ty4, ty5;
 let tx1, tx2, tx3, tx4, tx5;
 let tz1, tz2, tz3, tz4, tz5;
 let rz1;
+let color, color1, color2;
 
 function preload() {
 
@@ -69,6 +70,9 @@ function setup() {
   tz4 = 0;
   tz5 = 0;
   anglenum = 0;
+  color = 50;
+  color1 = 100;
+  color2 = 100;
 
   textFont(font);
   textSize(width / 230);
@@ -332,6 +336,7 @@ function draw() {
       push();
       rotateX(HALF_PI);
       rotateZ(PI);
+      fill(0, 100, 100);
       model(teapot);
       pop();
 
@@ -344,6 +349,7 @@ function draw() {
         rotateX(HALF_PI);
         rotateZ(PI);
         translate(-30, 0, -15);
+        fill(72, 100, 100);
         model(teapot);
         pop();
 
@@ -351,6 +357,7 @@ function draw() {
         rotateX(HALF_PI);
         rotateZ(PI);
         translate(30, 0, -15);
+        fill(144, 100, 100);
         model(teapot);
         pop();
 
@@ -358,6 +365,7 @@ function draw() {
         rotateX(HALF_PI);
         rotateZ(PI);
         translate(-20, 0, 15);
+        fill(216, 100, 100);
         model(teapot);
         pop();
 
@@ -365,6 +373,7 @@ function draw() {
         rotateX(HALF_PI);
         rotateZ(PI);
         translate(20, 0, 15);
+        fill(288, 100, 100);
         model(teapot);
         pop();
       }
@@ -380,23 +389,29 @@ function draw() {
         rz += 0.045;
       }
       else { //water drop falling
+        if(color >= 0){ //teapot saturation down
+          color-= 3;
+        }
         push();
         translate(0.2, -18.1, -35);
         fill(200, 48, 85, 200);
         if (circley <= 10) {
-          circle(circlex += 0.04, circley += 2, 1);
+          circle(circlex += 0.04, circley += 1.5, 1.5);
         }
         pop();
       }
       translate(-20, -20, -20);
       rotateZ(rz);
       rotateX(HALF_PI);
-      model(teapot); // 물 떨어지면서 색 하얗게
+
+      fill(0,color,100);
+      model(teapot);
       pop();
 
       push();
       translate(23.5, -7, 10);
       rotateX(PI);
+      fill(189,41,78);
       model(teacup);
       pop();
       break;
@@ -405,30 +420,35 @@ function draw() {
       push();
       translate(cos(0) * tx1++, sin(0) * ty1--, -20);
       rotateZ(0);
+      fill(0,100,100);
       model(teapot);
       pop();
 
       push();
       translate(cos(TWO_PI / 5) * tx2++, sin(TWO_PI / 5) * ty2--, -20);
       rotateZ(-(TWO_PI / 5));
+      fill(72,100,100);
       model(teapot);
       pop();
 
       push();
       translate(cos(TWO_PI / 5 * 2) * tx3++, sin(TWO_PI / 5 * 2) * ty3--, -20);
       rotateZ(-(TWO_PI / 5 * 2));
+      fill(144,100,100);
       model(teapot);
       pop();
 
       push();
       translate(cos(TWO_PI / 5 * 3) * tx4++, sin(TWO_PI / 5 * 3) * ty4--, -20);
       rotateZ(-(TWO_PI / 5 * 3));
+      fill(216,100,100);
       model(teapot);
       pop();
 
       push();
       translate(cos(TWO_PI / 5 * 4) * tx5++, sin(TWO_PI / 5 * 4) * ty5--, -20);
       rotateZ(-(TWO_PI / 5 * 4));
+      fill(288,100,100)
       model(teapot);
       pop();
 
@@ -458,6 +478,7 @@ function draw() {
       translate(0, 0, tz1 -= 0.3);
       rotateX(HALF_PI);
       rotateZ(HALF_PI);
+      fill(0, 100, 100);
       model(teapot);
       pop();
 
@@ -465,6 +486,7 @@ function draw() {
       translate(25, 0, tz2);
       rotateX(HALF_PI);
       rotateZ(HALF_PI / 2);
+      fill(72,100,100);
       model(teapot);
       pop();
 
@@ -472,6 +494,7 @@ function draw() {
       translate(-25, 0, tz3);
       rotateX(HALF_PI);
       rotateZ(PI - (HALF_PI / 2));
+      fill(144,100,100);
       model(teapot);
       pop();
 
@@ -479,6 +502,7 @@ function draw() {
       translate(55, 0, tz4 += 0.2);
       rotateX(HALF_PI);
       rotateZ(0);
+      fill(216,100,100);
       model(teapot);
       pop();
 
@@ -486,6 +510,7 @@ function draw() {
       translate(-55, 0, tz5 += 0.2);
       rotateX(HALF_PI);
       rotateZ(PI);
+      fill(288,100,100);
       model(teapot);
       pop();
 
@@ -501,6 +526,7 @@ function draw() {
       spotLight(200, 0, 100, tx1 += 10, 0, 300, 0, 0, -1, PI / 16);
       rotateX(HALF_PI);
       shininess(100);
+      fill(144, 20, 100);
       model(teapot);
       pop();
       break;
@@ -509,6 +535,7 @@ function draw() {
       push();
       rotateZ(rz);
       rotateX(rx);
+      fill(72, 75, 100);
       model(teapot);
       pop();
       if (sound.currentTime() >= 9.7) {
@@ -539,30 +566,35 @@ function draw() {
       push();
       translate(cos(0) * tx1, sin(0) * ty1, -20);
       rotateZ(0);
+      fill(0,100,100);
       model(teapot);
       pop();
 
       push();
       translate(cos(TWO_PI / 5) * tx2, sin(TWO_PI / 5) * ty2, -20);
       rotateZ(-(TWO_PI / 5));
+      fill(72,100,100);
       model(teapot);
       pop();
 
       push();
       translate(cos(TWO_PI / 5 * 2) * tx3, sin(TWO_PI / 5 * 2) * ty3, -20);
       rotateZ(-(TWO_PI / 5 * 2));
+      fill(144,100,100);
       model(teapot);
       pop();
 
       push();
       translate(cos(TWO_PI / 5 * 3) * tx4, sin(TWO_PI / 5 * 3) * ty4, -20);
       rotateZ(-(TWO_PI / 5 * 3));
+      fill(216,100,100);
       model(teapot);
       pop();
 
       push();
       translate(cos(TWO_PI / 5 * 4) * tx5, sin(TWO_PI / 5 * 4) * ty5, -20);
       rotateZ(-(TWO_PI / 5 * 4));
+      fill(288, 100,100);
       model(teapot);
       pop();
 
@@ -586,7 +618,8 @@ function draw() {
     case 21: //dim spotlight
       spotLight(200, 0, 100 - brightness, tx1 += 5, 0, 1200, 0, 0, -1, PI / 8);
       push();
-      translate(0, -3, 25);
+      translate(0, -5,15);
+      fill(216, 40, 100);
       model(teapot);
       pop();
       break;
@@ -611,59 +644,69 @@ function draw() {
       translate(tx1, ty1, tz1);
       rotateX(rx);
       rotateZ(HALF_PI);
-      model(teapot);
+      fill(0,color1,100);
+      model(teapot); //center
       pop();
 
       push();
       translate(tx2, ty2, tz2);
       rotateX(rx);
       rotateZ(HALF_PI);
-      model(teapot);
+      fill(220, color2, 100);
+      model(teapot); //right
       pop();
 
       push();
       translate(tx3, ty3, tz3);
       rotateX(rx);
       rotateZ(HALF_PI);
-      model(teapot);
+      fill(0, color, 100);
+      model(teapot); //left : no tea left
       pop();
 
       push();
-      translate(23.2, -4, 10);
+      translate(23.2, -4, 5);
       rotateX(PI);
+      fill(189,41,78);
       model(teacup);
       pop();
 
       push();
-      translate(29.8, -4, 10);
+      translate(29.8, -4,5);
       rotateX(PI);
+      fill(189,41,78);
       model(teacup);
       pop();
 
       push();
-      translate(16.5, -4, 10);
+      translate(16.5, -4, 5);
       rotateX(PI);
+      fill(189,41,78);
       model(teacup);
       pop();
 
-      if (sound.currentTime() >= 13.25 && sound.currentTime() < 14.5) {
+      if (sound.currentTime() >= 13.25 && sound.currentTime() < 14.5) { //tilt down
         if (rx >= HALF_PI / 16 * 3) {
           rx -= HALF_PI / 16;
         }
-
+        if(color1 >= 50){
+          color1 -= 1 ;
+          color2 -= 1;
+        }
       }
-      if (sound.currentTime() >= 14.5) {
+      if (sound.currentTime() >= 14.5) { //tilt back up
         if (rx <= HALF_PI) {
           rx += HALF_PI / 10;
         }
-
       }
       break;
-
 
     case 24: //scene change to 25
       tz = 200;
       scene += 1;
+      color = 20;
+      color1 = 100;
+      color2 = 100;
       break;
 
     case 25: //Oh
@@ -685,6 +728,7 @@ function draw() {
       translate(0,0,30);
       rotateX(HALF_PI);
       rotateZ(rz);
+      fill(0,0,100);
       model(teapot);
       pop();
 
@@ -723,6 +767,7 @@ function draw() {
       translate(-13, 0, 0);
       rotateX(HALF_PI);
       rotateZ(rz);
+      fill(216, color, 100);
       model(teapot);
       pop();
 
@@ -730,41 +775,55 @@ function draw() {
       push();   //1 cup of tea
       translate(26, -3, 20);
       rotateX(PI);
+      fill(189,41,78);
       model(teacup);
       pop();
 
       if (sound.currentTime() >= 19.1) { //5cups of tea
+        if(color < 100){
+          color += 10;
+        }
+
         push();
         translate(26, -5, 20);
         rotateX(PI);
+        fill(189,61,78);
         model(teacup);
         pop();
 
         push();
         translate(26, -7, 20);
         rotateX(PI);
+        fill(189,61,78);
         model(teacup);
         pop();
 
         push();
         translate(26, -9, 20);
         rotateX(PI);
+        fill(189,61,78);
         model(teacup);
         pop();
 
         push();
         translate(26, -11, 20);
         rotateX(PI);
+        fill(189,61,78);
         model(teacup);
         pop();
       }
 
       if (sound.currentTime() >= 19.85) {
+        if(color > 20){
+                color -= 20;
+        }
+
         background(0);
         push();
         translate(-13, 0, 0);
         rotateX(HALF_PI);
         rotateZ(rz);
+        fill(216, color, 100);
         model(teapot);
         pop();
 
@@ -772,6 +831,7 @@ function draw() {
         push(); //1 cup of tea
         translate(26, -3, 20);
         rotateX(PI);
+        fill(189,41,78);
         model(teacup);
         pop();
 
@@ -801,11 +861,16 @@ function draw() {
       break;
 
     case 33: //small teapots growing with big rotating teapot
+
+    directionalLight(180,50,100,-100,0,0);
+    directionalLight(297,50,100,100,0,0);
+
       rz += HALF_PI / 40;
       tz -= 15;
       push();
       translate(0, -5, -20);
       rotateZ(rz);
+      fill(0, 30, 100);
       model(teapot);
       pop();
 
@@ -815,6 +880,7 @@ function draw() {
             push();
             translate(x, y, -120);
             rotateZ(rz);
+            fill(0,0,100);
             model(teapot);
             pop();
           }
@@ -827,6 +893,7 @@ function draw() {
             push();
             translate(x, y, -120);
             rotateZ(rz);
+            fill(0,0,100);
             model(teapot);
             pop();
           }
@@ -839,6 +906,7 @@ function draw() {
             push();
             translate(x, y, -120);
             rotateZ(rz);
+            fill(0,0,100);
             model(teapot);
             pop();
           }
@@ -850,7 +918,8 @@ function draw() {
       break;
 
     case 34: //4 zoom in teapots
-
+    directionalLight(180,50,100,-100,0,0);
+    directionalLight(297,50,100,100,0,0);
       if (sound.currentTime() < 23.14) {
         rz1 += HALF_PI / 150;
       }
@@ -865,6 +934,7 @@ function draw() {
       translate(-10, -7, tz1 + 60);
       rotateY(rz1);
       rotateX(HALF_PI * 5 / 6);
+      fill(72, 50, 100);
       model(teapot);
       pop();
 
@@ -873,6 +943,7 @@ function draw() {
           push();
           translate(x, y, -120);
           rotateZ(rz);
+          fill(0,0,100);
           model(teapot);
           pop();
         }
@@ -886,6 +957,7 @@ function draw() {
             push();
             translate(x, y, -120);
             rotateZ(rz);
+            fill(0,0,100);
             model(teapot);
             pop();
           }
@@ -896,6 +968,7 @@ function draw() {
         translate(10, 5, tz1 + 60);
         rotateY(rz1);
         rotateX(HALF_PI * 1 / 3);
+        fill(144, 29, 100);
         model(teapot);
         pop();
       }
@@ -908,6 +981,7 @@ function draw() {
             push();
             translate(x, y, -120);
             rotateZ(rz);
+            fill(0,0,100);
             model(teapot);
             pop();
           }
@@ -918,6 +992,7 @@ function draw() {
         translate(-8, -4, tz1 + 60);
         rotateY(rz1);
         rotateX(PI * 5 / 6);
+        fill(216, 72, 100);
         model(teapot);
         pop();
       }
@@ -929,6 +1004,7 @@ function draw() {
             push();
             translate(x, y, -120);
             rotateZ(rz);
+            fill(0,0,100);
             model(teapot);
             pop();
           }
@@ -939,6 +1015,7 @@ function draw() {
         translate(11, 0, tz1 + 60);
         rotateY(rz1);
         rotateX(PI * 9 / 5);
+        fill(288, 49, 100);
         model(teapot);
         pop();
       }
@@ -952,6 +1029,7 @@ function draw() {
             push();
             translate(x - tx2, y, -120);
             rotateZ(rz);
+            fill(0,0,100);
             model(teapot);
             pop();
           }
@@ -962,6 +1040,7 @@ function draw() {
             push();
             translate(x + tx2, y, -120);
             rotateZ(rz);
+            fill(0,0,100);
             model(teapot);
             pop();
           }
@@ -976,6 +1055,7 @@ function draw() {
         translate(0, ty2, tz1);
         //rotateY(rz1);
         rotateX(HALF_PI);
+        fill(0, 70, 100);
         model(teapot);
         pop();
       }
