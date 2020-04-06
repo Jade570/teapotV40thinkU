@@ -26,13 +26,14 @@ function setup() {
   slider = createSlider(0, 360, 120);
   slider.position(10, 10);
   slider.style('width', '80px');
+
   rotz = 0;
   rotx = 0;
   roty = 0;
   brightness = 0;
   scl = 10;
   sound.setVolume(0.1);
-  scene = 0;
+  scene = -1;
   cangle = TWO_PI / 5;
   cFrame = 0;
 
@@ -51,7 +52,7 @@ function draw() {
   let angle = TWO_PI / 5;
 
   //scene change by sound
-  if (sound.isPlaying() == false && scene == 0) {
+  if (sound.isPlaying() == false && scene == -1 && mouseIsPressed) {
     sound.play();
     scene = 0;
   }
