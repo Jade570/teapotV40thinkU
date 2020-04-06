@@ -160,6 +160,10 @@ function draw() {
   if (sound.currentTime() >= 13.1 && sound.currentTime() <= 13.2 && scene == 21) {
     scene += 1;
   }
+  if (sound.currentTime() >= 15 && sound.currentTime() <= 15.1 && scene == 23) {
+    scene += 1;
+  }
+
 
 
   background(0);
@@ -600,31 +604,95 @@ function draw() {
 
     case 22:
       brightness = 100;
-      push();
-      translate(0, -20, -30);
-      rotateX(HALF_PI);
-      rotateZ(HALF_PI);
-      model(teapot);
-      pop();
-
-      push();
-      translate(-30, -20, -30);
-      rotateX(HALF_PI);
-      rotateZ(HALF_PI);
-      model(teapot);
-      pop();
-
-      push();
-      translate(30, -20, -30);
-      rotateX(HALF_PI);
-      rotateZ(HALF_PI);
-      model(teapot);
-      pop();
-
-
+      tx1 = 0;
+      tx2 = 30;
+      tx3 = -30;
+      ty1 = -20;
+      ty2 = -20;
+      ty3 = -20;
+      tz1 = -30;
+      tz2 = -30;
+      tz3 = -30;
+      scene+=1;
+      rx = HALF_PI;
       break;
 
+    case 23:
+      push();
+      translate(tx1, ty1, tz1);
+      rotateX(rx);
+      rotateZ(HALF_PI);
+      model(teapot);
+      pop();
+
+      push();
+      translate(tx2, ty2, tz2);
+      rotateX(rx);
+      rotateZ(HALF_PI);
+      model(teapot);
+      pop();
+
+      push();
+      translate(tx3, ty3, tz3);
+      rotateX(rx);
+      rotateZ(HALF_PI);
+      model(teapot);
+      pop();
+
+      push();
+      translate(23.2, -4, 10);
+      rotateX(PI);
+      model(teacup);
+      pop();
+
+      push();
+      translate(29.8, -4, 10);
+      rotateX(PI);
+      model(teacup);
+      pop();
+
+      push();
+      translate(16.5, -4, 10);
+      rotateX(PI);
+      model(teacup);
+      pop();
+
+      if (sound.currentTime() >= 13.25 && sound.currentTime() < 14.5){
+          if(rx >= HALF_PI/16*3){
+                      rx -= HALF_PI / 16;
+          }
+
+      }
+      if (sound.currentTime() >= 14.5){
+          if(rx <= HALF_PI){
+                      rx += HALF_PI / 10;
+          }
+
+      }
+      break;
+
+
+    case 24:
+    tz = 200;
+
+
+    scene+=1;
+      break;
+
+      case 25:
+      fill(255);
+      let writetext5 = "Oh";
+      text(writetext5, 0, 0);
+      if (tz >= -600 && sound.currentTime() >= 15.11) {
+        tz -= 50;
+      }
+      break;
+
+
+
   }
+
+
 
 }
 
