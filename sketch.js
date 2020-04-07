@@ -16,6 +16,7 @@ let tx1, tx2, tx3, tx4, tx5;
 let tz1, tz2, tz3, tz4, tz5;
 let rz1;
 let color, color1, color2;
+let starty, endy, inc;
 
 function preload() {
 
@@ -73,7 +74,9 @@ function setup() {
   color = 50;
   color1 = 100;
   color2 = 100;
-
+  starty = 0;
+  endy = 0;
+  inc = 1;
   textFont(font);
   textSize(width / 230);
   textAlign(CENTER, BOTTOM);
@@ -640,6 +643,7 @@ function draw() {
       break;
 
     case 23: //3 teapot pouring ( 3 color balloon)
+
       push();
       translate(tx1, ty1, tz1);
       rotateX(rx);
@@ -694,9 +698,36 @@ function draw() {
           color2 -= 1;
         }
       }
+      //if(starty <= 20){
+        //starty+=0.6;
+      //}
+
+      if(endy <=14 && inc == 1){
+        starty+=0.6;
+        endy+=0.8;
+      }
+      else if (endy > 0){
+        inc = 0;
+        starty+=0.6;
+        endy-=0.8;
+      }
+      push();
+      translate(tx2+7, ty2+5+starty, tz2);
+      fill(190, 40, 80, 20);
+      cylinder(0.6,endy);
+      pop();
+      push();
+      translate(tx1, ty1+5+starty, tz1);
+      fill(190, 40, 80, 20);
+      cylinder(0.6,endy);
+      pop()
       if (sound.currentTime() >= 14.5) { //tilt back up
         if (rx <= HALF_PI) {
           rx += HALF_PI / 10;
+        }
+        if(endy > 0){
+
+          endy-=1.6;
         }
       }
       break;
@@ -870,7 +901,7 @@ function draw() {
       push();
       translate(0, -5, -20);
       rotateZ(rz);
-      fill(0, 30, 100);
+      fill(0, 50, 100);
       model(teapot);
       pop();
 
@@ -1015,7 +1046,7 @@ function draw() {
         translate(11, 0, tz1 + 60);
         rotateY(rz1);
         rotateX(PI * 9 / 5);
-        fill(288, 49, 100);
+        fill(288, 39, 100);
         model(teapot);
         pop();
       }
@@ -1072,7 +1103,6 @@ function draw() {
     directionalLight(0,0,100,0,0,100);
     push();
     translate(0,0,tz3);
-    console.log(tz3); //-118
     image(thinku,0,-10,35*2/3,25*2/3);
     pop();
     rz += HALF_PI;
