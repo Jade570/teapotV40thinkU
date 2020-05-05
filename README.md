@@ -4,6 +4,7 @@ teapot show for 2020-1 Computer Graphics @ Sogang Univ.
 A parody of LG V40 ThinkQ.
 
 Written in P5.js.
+[Link](https://jade570.github.io/teapotV40thinkU/)
 
 ## Source Used
 ### teacup
